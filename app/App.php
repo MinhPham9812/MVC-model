@@ -91,6 +91,11 @@
             }else{
                 $this->__controller = ucfirst($this->__controller);
             }
+            
+            // if $urlCheck is empty, $urlCheck = routes['default_controller']= Home
+            if(empty($urlCheck)){
+                $urlCheck = $this->__controller;
+            }
 
             if(file_exists('app/controllers/'.$urlCheck.'.php')){
                 require_once 'app/controllers/'.$urlCheck.'.php';
