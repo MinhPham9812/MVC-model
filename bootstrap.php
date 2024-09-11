@@ -35,8 +35,8 @@
                 $db = new Database();
             }
         }
-            
-
+    
+    require_once 'core/Model.php';    
     require_once 'core/Controller.php'; //Load base controller
     require_once 'app/App.php'; //Load app
     

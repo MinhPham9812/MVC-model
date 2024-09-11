@@ -6,7 +6,9 @@
         }
         public function index(){
             $data = $this->model_home->getList();
-            echo json_encode($data);
+            echo '<pre>';
+            print_r($data);
+            echo '</pre>';
         }
 
         

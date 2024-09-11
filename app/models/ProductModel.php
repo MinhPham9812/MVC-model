@@ -1,6 +1,6 @@
 <?php
 
-    class ProductModel{
+    class ProductModel {
         protected $_table = 'products';
 
         public function getListProduct(){
