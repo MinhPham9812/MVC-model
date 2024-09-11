@@ -31,14 +31,8 @@
                 require_once 'core/Connection.php';
                 require_once 'core/Database.php';
                 
-                // Khởi tạo đối tượng Database và thực thi truy vấn
+                // Initialize the Database object and execute the query
                 $db = new Database();
-                $query = $db->query('SELECT * FROM users');  // Thực thi câu lệnh SQL
-                $result = $query->fetchAll();  // Lấy kết quả
-                
-                echo "<pre>";
-                print_r($result);  // In ra cấu hình database để đảm bảo nó được nạp
-                echo "</pre>";  // In kết quả ra màn hình
             }
         }
             

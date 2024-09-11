@@ -25,6 +25,7 @@
             
             // Return the statement object if the query was successful
             if($query){
+                // $statement stores the results of the query
                 return $statement;
             }
             return $query;
@@ -91,6 +92,7 @@
         function firstRaw($sql){
             $statement = $this->query($sql);
             if(is_object($statement)){
+                //fetch(PDO::FETCH_ASSOC) will return first row
                 $dataFetch = $statement->fetch(PDO::FETCH_ASSOC);
                 return $dataFetch;
             }else{
@@ -116,10 +118,38 @@
             return $this->firstRaw($sql); 
         }
     
+        //Get number of rows
         function getRows($sql){
             $statement = $this->query($sql);
             if(!empty($statement)){
                 return $statement->rowCount();
             }
         }
+
+        function getLastId($table, $idField = 'id') {
+            $sql = "SELECT MAX($idField) AS max_id FROM $table";
+            $result = $this->firstRaw($sql);
+            if ($result && isset($result['max_id'])) {
+                return $result['max_id'];
+            }
+            return null; 
+        }
+
+        
+        function getLastRaw($table, $idField = 'id') {
+            //Get last id
+            $sql = "SELECT MAX($idField) AS max_id FROM $table";
+            $result = $this->firstRaw($sql);
+            if ($result && isset($result['max_id'])) {
+                $maxId = $result['max_id'];
+                //Get data
+                $sql = "SELECT * FROM $table WHERE $idField = $maxId ";
+                $data = $this->firstRaw($sql); 
+
+                return $data;
+            }
+            return null; 
+        }
+
+        
     }
